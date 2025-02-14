@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>情人节惊喜</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #ffb6c1;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+        .page {
+            display: none;
+            text-align: center;
+        }
+        #heart {
+            font-size: 100px;
+            color: red;
+            opacity: 0;
+            animation: fadeInHeart 3s forwards;
+        }
+        #message {
+            font-size: 30px;
+            color: white;
+            opacity: 0;
+            animation: fadeInMessage 2s 3s forwards;
+        }
+        #nickname {
+            font-size: 40px;
+            color: white;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInNickname 3s 5s forwards;
+        }
+        #next, #finish {
+            position: absolute;
+            bottom: 20px;
+            background-color: #ff80ab;
+            padding: 10px 20px;
+            font-size: 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #finish {
+            display: none;
+        }
+
+        @keyframes fadeInHeart {
+            0% { opacity: 0; transform: scale(0); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        @keyframes fadeInMessage {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        @keyframes fadeInNickname {
+            0% { opacity: 0; transform: translateY(50px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        #finalMessage {
+            font-size: 28px;
+            color: white;
+            opacity: 0;
+            animation: fadeInFinalMessage 4s forwards;
+        }
+        @keyframes fadeInFinalMessage {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <!-- 第1页：爱心和“我爱你” -->
+    <div id="page1" class="page">
+        <div id="heart">💖</div>
+        <div id="message">我爱你！</div>
+        <button id="next" onclick="nextPage(2)">下一页</button>
+    </div>
+
+    <!-- 第2页：爱称和心形动画 -->
+    <div id="page2" class="page">
+        <div id="nickname">宝宝宝贝</div>
+        <div id="heart">💖</div>
+        <button id="next" onclick="nextPage(3)">下一页</button>
+    </div>
+
+    <!-- 第3页：情人节祝福 -->
+    <div id="page3" class="page">
+        <div id="finalMessage">
+            祝我全世界最棒最优秀最美丽的猪猪情人节快乐鸭！~<br>
+            很遗憾今年的情人节不能在你身边陪你一起浪漫！<br>
+            但是我会让我们的爱始终被浪漫包围，因为我希望你成为全世界最幸福的女孩！<br>
+            你的宝贝牛牛永远在你身边陪伴你哦~
+        </div>
+        <button id="finish" onclick="finishSurprise()">完成</button>
+    </div>
+
+    <script>
+        // 初始化时显示第1页
+        document.getElementById('page1').style.display = 'block';
+
+        function nextPage(pageNumber) {
+            // 隐藏当前页面
+            let currentPage = document.querySelector('.page:not([style*="display: none"])');
+            currentPage.style.display = 'none';
+
+            // 根据页面号显示下一个页面
+            let nextPage = document.getElementById('page' + pageNumber);
+            nextPage.style.display = 'block';
+
+            // 如果是第2页，启动相关动画
+            if (pageNumber === 2) {
+                setTimeout(function() {
+                    document.getElementById('nickname').style.opacity = 1;
+                    document.getElementById('heart').style.opacity = 1;
+                }, 500);
+
+                setTimeout(function() {
+                    document.getElementById('heart').style.opacity = 1;
+                }, 3000);
+            }
+
+            // 如果是第3页，显示祝福语
+            if (pageNumber === 3) {
+                setTimeout(function() {
+                    document.getElementById('finalMessage').style.opacity = 1;
+                }, 500);
+            }
+        }
+
+        // 完成时的处理
+        function finishSurprise() {
+            alert("祝你们情人节快乐！❤️");
+        }
+    </script>
+</body>
+</html>
